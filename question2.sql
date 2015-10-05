@@ -38,10 +38,10 @@ CREATE TABLE Enrolled (
   FOREIGN KEY (cid) REFERENCES Course(cid) 
 );
 
-INSERT INTO Student (sid, name, major) VALUES (0, a, a);
-INSERT INTO Student (sid, name, major) VALUES (1, b, b);
-INSERT INTO Student (sid, name, major) VALUES (2, c, c);
-INSERT INTO Student (sid, name, major) VALUES (3, d, d);
+INSERT INTO Student (sid, name, major) VALUES (0, 'a', 'a');
+INSERT INTO Student (sid, name, major) VALUES (1, 'b', 'b');
+INSERT INTO Student (sid, name, major) VALUES (2, 'c', 'c');
+INSERT INTO Student (sid, name, major) VALUES (3, 'd', 'd');
 
 INSERT INTO Project (pid, ptitle) VALUES (0, 'project');
 
