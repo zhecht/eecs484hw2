@@ -23,11 +23,11 @@ CREATE TABLE Course (
 );
 
 CREATE TABLE Member (
-	pid integer,
-	cid integer,
-	PRIMARY KEY (pid, cid),
-	FOREIGN KEY (pid) REFERENCES Project(pid),
-	FOREIGN KEY (sid) REFERENCES Student(sid)
+  pid integer,
+  sid integer,
+  PRIMARY KEY (pid, sid),
+  FOREIGN KEY (pid) REFERENCES Project(pid),
+  FOREIGN KEY (sid) REFERENCES Student(sid)
 );
 
 CREATE TABLE Enrolled (
