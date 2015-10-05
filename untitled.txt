@@ -3,10 +3,15 @@
 SELECT S.name, S.sid FROM Student S, Student S2, Member M, Member M2, Course C, Course C2, Enrolled E WHERE S.sid = M.sid AND S2.sid = M2.sid AND M2.pid = M.pid AND S2.sid = E.sid AND E.cid = C.cid AND E.cid = C2.cid AND ((C.title = 'EECS482' AND C2.title = 'EECS484') OR (C.title = 'EECS484' AND C2.title = 'EECS482'));
 
 
---2
+--2 (tested)
 
--- make view with courseid/sid
-CREATE VIEW tempView AS SELECT C.cid, S.sid FROM Course C, Student S, Enrolled E WHERE S.sid = E.sid AND E.cid = C.cid;
+SELECT DISTINCT S.sid, S.name FROM Student S WHERE EXISTS (SELECT * FROM Course C, Enrolled E, Student S2 WHERE S2.major = 'CS' AND E.sid = S2.sid AND E.cid = C.cid HAVING COUNT(*) > 30) ORDER BY S.name DESC ;
 
 
-SELECT S.sid, S.name FROM Student S WHERE EXISTS (SELECT * FROM Course C, Enrolled E, Student S2 WHERE S2.major = 'CS' AND E.sid = S2.sid AND E.cid = C.cid HAVING COUNT(*) > 30)
+--3
+
+CREATE VIEW sameClassView AS SELECT S.sid, S1.sid, E.cid FROM Student S, Student S1, Enrolled E, Enrolled E1, Course C WHERE S.sid = E.sid AND S1.sid = E1.sid AND E.cid = E1.cid;
+
+CREATE VIEW NonPartnerClassmates AS SELECT S.sid, S1.sid FROM Student S, Student S1, Course C, Enrolled E, Enrolled E1, Project P WHERE S.sid = E.sid AND S1.sid = E1.sid AND E.cid = C.cid AND E1.cid = C.cid;
+
+DROP VIEW sameClassView;
