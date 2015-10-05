@@ -1,9 +1,9 @@
+DROP TABLE Member;
+DROP TABLE Enrolled;
+DROP TABLE Student;
+DROP TABLE Project;
+DROP TABLE Course;
 
---DROP TABLE Student;
---DROP TABLE Project;
---DROP TABLE Course;
---DROP TABLE Member;
---DROP TABLE Enrolled;
 
 
 CREATE TABLE Student (
@@ -23,15 +23,17 @@ CREATE TABLE Course (
 );
 
 CREATE TABLE Member (
-	pid integer  PRIMARY KEY,
-	cid integer PRIMARY KEY,
+	pid integer,
+	cid integer,
+	PRIMARY KEY (pid, cid),
 	FOREIGN KEY (pid) REFERENCES Project(pid),
 	FOREIGN KEY (sid) REFERENCES Student(sid)
 );
 
 CREATE TABLE Enrolled (
-  sid integer  PRIMARY KEY,
-	cid integer PRIMARY KEY,
+  sid integer,
+	cid integer,
+	PRIMARY KEY (sid, cid),
   FOREIGN KEY (sid) REFERENCES Student(sid),
   FOREIGN KEY (cid) REFERENCES Course(cid) 
 );
