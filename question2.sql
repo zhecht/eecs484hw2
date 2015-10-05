@@ -38,10 +38,17 @@ CREATE TABLE Enrolled (
   FOREIGN KEY (cid) REFERENCES Course(cid) 
 );
 
-INSERT INTO Student (sid, name, major) VALUES (0, 'a', 'a');
-INSERT INTO Student (sid, name, major) VALUES (1, 'b', 'b');
-INSERT INTO Student (sid, name, major) VALUES (2, 'c', 'c');
-INSERT INTO Student (sid, name, major) VALUES (3, 'd', 'd');
+INSERT INTO Student (sid, name, major) VALUES (0, 'a', 'CS');
+INSERT INTO Student (sid, name, major) VALUES (1, 'b', 'CS');
+INSERT INTO Student (sid, name, major) VALUES (2, 'c', 'CS');
+INSERT INTO Student (sid, name, major) VALUES (3, 'd', 'CS');
+INSERT INTO Student (sid, name, major) VALUES (4, 'b', 'CS');
+INSERT INTO Student (sid, name, major) VALUES (5, 'c', 'CS');
+INSERT INTO Student (sid, name, major) VALUES (6, 'd', 'CS');
+INSERT INTO Student (sid, name, major) VALUES (7, 'b', 'CS');
+INSERT INTO Student (sid, name, major) VALUES (8, 'c', 'CS');
+INSERT INTO Student (sid, name, major) VALUES (9, 'd', 'CS');
+INSERT INTO Student (sid, name, major) VALUES (10, 'd', 'CE');
 
 INSERT INTO Project (pid, ptitle) VALUES (0, 'project');
 
@@ -55,5 +62,15 @@ INSERT INTO Enrolled (sid, cid) VALUES (0, 0);
 INSERT INTO Enrolled (sid, cid) VALUES (0, 1);
 INSERT INTO Enrolled (sid, cid) VALUES (1, 0);
 INSERT INTO Enrolled (sid, cid) VALUES (1, 1);
+INSERT INTO Enrolled (sid, cid) VALUES (2, 1);
+INSERT INTO Enrolled (sid, cid) VALUES (3, 1);
+INSERT INTO Enrolled (sid, cid) VALUES (4, 1);
+INSERT INTO Enrolled (sid, cid) VALUES (5, 1);
+INSERT INTO Enrolled (sid, cid) VALUES (6, 1);
+INSERT INTO Enrolled (sid, cid) VALUES (7, 1);
+INSERT INTO Enrolled (sid, cid) VALUES (8, 1);
+INSERT INTO Enrolled (sid, cid) VALUES (9, 1);
+INSERT INTO Enrolled (sid, cid) VALUES (10, 1);
+
 
 
