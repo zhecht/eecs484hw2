@@ -10,8 +10,10 @@ SELECT DISTINCT S.sid, S.name FROM Student S WHERE EXISTS (SELECT * FROM Course 
 
 --3
 
-CREATE VIEW sameClassView AS SELECT S.sid, S1.sid, E.cid FROM Student S, Student S1, Enrolled E, Enrolled E1 WHERE S.sid = E.sid AND S1.sid = E1.sid AND E.cid = E1.cid;
+
 
 CREATE VIEW NonPartnerClassmates AS SELECT S.sid, S1.sid FROM Student S, Student S1, Course C, Enrolled E, Enrolled E1, Project P WHERE S.sid = E.sid AND S1.sid = E1.sid AND E.cid = C.cid AND E1.cid = C.cid;
+
+CREATE VIEW NonPartnerClassmates AS SELECT S.sid, S1.sid FROM Student S, Student S1 WHERE EXISTS (SELECT * FROM Enrolled E, Enrolled E1, Course C WHERE S.sid = E.sid AND S1.sid = E1.sid AND E.cid = C.cid AND E1.cid = C.cid AND NOT EXISTS (SELECT * FROM Member M, Member M1, Project P WHERE S.sid = M.sid AND S1.sid = M1.sid AND M.pid = P.pid AND M1.pid = P.pid));
 
 DROP VIEW sameClassView;
