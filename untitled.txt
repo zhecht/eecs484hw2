@@ -1,0 +1,3 @@
+
+SELECT S2.name, S2.sid FROM Student S, Student S2, Member M, Member M2, Course C, Course C2, Enrolled E 
+	WHERE S.sid = M.sid AND S2.sid = M2.sid AND M2.pid = M.pid AND S.sid = E.sid AND E.cid = C.cid AND E.cid = C2.cid AND C.title = 'EECS484' AND C2.title = 'EECS482';
