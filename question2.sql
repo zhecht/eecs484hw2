@@ -58,7 +58,7 @@ INSERT INTO Course (cid, title) VALUES (0, 'EECS484');
 INSERT INTO Course (cid, title) VALUES (1, 'EECS482');
 
 INSERT INTO Member (pid, sid) VALUES (0, 0);
-INSERT INTO Member (pid, sid) VALUES (0, 0);
+INSERT INTO Member (pid, sid) VALUES (0, 1);
 INSERT INTO Member (pid, sid) VALUES (1, 0);
 
 INSERT INTO Enrolled (sid, cid) VALUES (0, 0);
