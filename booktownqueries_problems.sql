@@ -32,9 +32,6 @@ SELECT A.last_name, A.first_name FROM authors A, books B1, books B2, subjects S1
 
 SELECT B.title, S.subject, A.author_id, A.last_name, A.first_name FROM books B, subjects S, authors A WHERE A.author_id = B.author_id AND B.subject_id = ANY (SELECT S1.subject_id FROM subjects S1 WHERE S1.subject = 'Short Story');
 
-
-SELECT B.title, S.subject, A.author_id, A.last_name, A.first_name FROM books B, subjects S, authors A WHERE A.author_id = B.author_id AND B.subject_id = (SELECT B2.subject_id FROM books B2, authors A1, subjects S1 WHERE A1.author_id = B2.author_id AND B2.subject_id = S1.subject_id AND S1.subject = 'Short Story') AND B.subject_id = S.subject_id;
-
 -- Q4: Find id, first name, and last name of authors who wrote books for all the 
 -- subjects of books written by Edgar Allen Poe.
 
