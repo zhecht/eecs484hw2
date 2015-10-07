@@ -132,7 +132,7 @@ INSERT INTO books VALUES(7809,'A shining short story',4157,16);
 INSERT INTO books VALUES(25908,'Franklin in the Dark',15990,2);
 INSERT INTO books VALUES(41472,'Practical PostgreSQL',1212,4);
 INSERT INTO books VALUES(41473,'Programming Python',7805,4);
-#INSERT INTO books VALUES(41477,'Learning Python',4157,9);
+--INSERT INTO books VALUES(41477,'Learning Python',4157,9);
 INSERT INTO books VALUES(41478,'Perl Cookbook',7806,4);
 
 

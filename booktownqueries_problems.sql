@@ -35,16 +35,13 @@ SELECT B.title, S.subject, A.author_id, A.last_name, A.first_name FROM books B, 
 -- Q4: Find id, first name, and last name of authors who wrote books for all the 
 -- subjects of books written by Edgar Allen Poe.
 
-SELECT A.author_id, A.first_name, A.last_name FROM authors A, books B, subjects S WHERE A.author_id = B.author_id AND B.subject_id = S.subject_id AND S.subject = ANY (SELECT S1.subject FROM subjects S1, books B1, authors A1 WHERE S1.subject_id = B1.subject_id AND A1.author_id = B1.author_id AND A1.first_name = 'Edgar Allen' AND A1.last_name = 'Poe');
-
-SELECT A.author_id, A.first_name, A.last_name FROM authors A, books B, subjects S WHERE A.author_id = B.author_id AND B.subject_id = (SELECT subject_id FROM subjects WHERE subject = (SELECT S1.subject FROM subjects S1, authors A1, books B1 WHERE S1.subject_id = B1.subject_id AND B1.author_id = A1.author_id AND A1.first_name = 'Edgar Allen' AND A1.last_name = 'Poe'));
+SELECT DISTINCT A.author_id, A.first_name, A.last_name FROM authors A, books B, subjects S WHERE A.author_id = B.author_id AND B.subject_id = S.subject_id AND S.subject = ANY (SELECT S1.subject FROM subjects S1, books B1, authors A1 WHERE S1.subject_id = B1.subject_id AND A1.author_id = B1.author_id AND A1.first_name = 'Edgar Allen' AND A1.last_name = 'Poe') AND A.first_name <> 'Edgar Allen' AND A.last_name <> 'Poe';
 
 
 -- Q5: Find the name and id of all publishers whos have published books for authors
 -- who have written more than one book, order by ascending publisher id;
 
-SELECT P.name, P.publisher_id FROM publishers P, editions E WHERE P.publisher_id = E.publisher_id AND  IN (SELECT E.publisher_id FROM editions E WHERE EXISTS (SELECT * FROM authors A, books B WHERE A.author_id = B.author_id AND B.book_id = E.book_id HAVING COUNT(*) > 1));
-
+SELECT DISTINCT P.name, P.publisher_id FROM publishers P, editions E, authors A, books B WHERE P.publisher_id = E.publisher_id AND E.book_id = B.book_id AND B.author_id = A.author_id AND A.author_id IN (SELECT B.author_id FROM books B1 GROUP BY B.author_id HAVING COUNT(*) > 1) ORDER BY P.publisher_id;
 
 -- Q6: Find the last name and first name of authors who haven't written any book
 SELECT A.last_name, A.first_name FROM authors A WHERE NOT EXISTS (SELECT * FROM books B WHERE B.author_id = A.author_id);
@@ -54,7 +51,7 @@ SELECT A.last_name, A.first_name FROM authors A WHERE NOT EXISTS (SELECT * FROM 
 --     in descending order by the total stock. Name the column for total stock as NUM_STOCK. 
 --     NOTE: You do not need to consider editions of books that are not in the Stock Table.
 
-SELECT E.book_id, S.stock FROM stock S, editions E WHERE 
+SELECT DISTINCT E.book_id, S.stock AS NUM_STOCK FROM stock S, editions E WHERE E.isbn = S.isbn AND E.isbn = ANY (SELECT S1.isbn FROM stock S1) ORDER BY S.stock DESC;
 
 
 -- Q8: Find id of authors who have written exactly 1 book. Name the column as id. 
